@@ -19,11 +19,11 @@
 3. 创建一个资源和一个动作
 4. 完成规则引擎创建，并进行测试
 
->注意:
+>⚠️注意:
 >
->在使用规则引擎前，请先创建部署，并完成[对等连接](../deployments/vpc_peering.md)
+>如果使用的是正式部署。在使用规则引擎前，请先创建部署，并完成[对等连接](../deployments/vpc_peering.md)，请确保以下涉及到的服务器都建立在对等连接下的 VPC 中
 >
->请确保以下涉及到的服务器都建立在对等连接下的 VPC 中
+>免费试用部署，无需完成对等连接
 
 ### 1. 搭建 Kafka 服务
 
@@ -50,7 +50,11 @@ docker run -d  --restart=always --name mykafka \
 $ docker exec -it mykafka /bin/bash
 $ kafka-topics.sh --zookeeper <服务器内网IP>:2181 --replication-factor 1 --partitions 1 --topic testTopic --create
 ```
- 
+
+> ⚠️注意：
+>
+>  如果你使用的是免费试用部署，则需要将 <服务器内网 IP> 替换为 <服务器公网 IP>
+
 ### 2. 设置规则引擎的筛选条件
 
 进入 [EMQ X Cloud 控制台](https://cloud.emqx.io/console/)，并点击进入要使用桥接 Kafka 的部署。
@@ -62,7 +66,6 @@ $ kafka-topics.sh --zookeeper <服务器内网IP>:2181 --replication-factor 1 --
 我们的目标是：当主题 greet 收到 msg 为 hello 字符时，就会触发引擎。这里需要对 SQL 进行一定的处理：
 
 * 针对 greet 主题，即 'greet/#'
-* 对 payload 中的 msg 进行匹配，当它为 'hello' 字符串再执行规则引擎
 
 根据上面的原则，我们最后得到的 SQL 应该如下：
 
@@ -71,8 +74,6 @@ SELECT
   payload.msg as msg
 FROM
   "greet/#"
-WHERE
-  msg = 'hello'
 ```
 
 可以点击 SQL 输入框下的 SQL 测试 ，填写数据：
@@ -96,23 +97,29 @@ WHERE
 
 ### 3. 创建资源和动作
 
-点击添加动作，在选择动作页，选择 桥接数据到 Kafka，点击下一步，在配置动作页面，点击创建资源。
+点击添加动作，在动作类型中，选择 **桥接数据到 Kafka**，点击 "新建" 创建资源。
 
 ![添加动作](../_assets/deployments/rule_engine/add_webhook_action01.png)
 
 ![添加动作](../_assets/deployments/rule_engine/add_kafka_action02.png)
 
-在创建资源页面里，资源类型选择 Kafka，在 Kafka 服务器框里填写服务器的内网 IP 和对应的端口` <ip>:<port>`，这里，我们使用的端口号是 9092。点击测试，右上角返回 “测试资源创建成功” 表示测试成功。
+在创建资源页面里，在 Kafka 服务器框里填写服务器的内网 IP 和对应的端口，这里，我们使用的端口号是 9092。点击测试，返回 “资源可用” 表示测试成功。
 
 ![添加动作](../_assets/deployments/rule_engine/add_kafka_action03.png)
 
->注意：如果测试失败，请检查是否完成对等连接，详情请看 [VPC 对等连接](../deployments/vpc_peering.md)，并检查 URL 是否正确。 
+>⚠️注意：
+>
+>如果测试失败，请检查是否完成对等连接，详情请看 [VPC 对等连接](../deployments/vpc_peering.md)，并检查 URL 是否正确。 
+>
+>如果对等连接已经完成，请检查服务器的安全组是否打开对应的端口
+>
+>如果使用的是免费试用部署，则 IP 填写的是公网 IP。如果测试失败，请检查服务器地址是否是公网 IP 以及服务器端口是否打开
 
-点击确定，返回到配置动作页面，Kafka 主题填写刚刚创建的 testTopic 主题，在消息内容模板里填写 "hello from emqx cloud"，资源 ID 默认，点击确定。
+点击确定，返回到配置动作页面，Kafka 主题填写刚刚创建的 testTopic 主题，在消息内容模板里填写 "${msg} from emqx cloud"，资源 ID 默认，点击确定。
 
 ![添加动作](../_assets/deployments/rule_engine/add_kafka_action04.png)
 
-创建好的动作会显示在响应动作一栏里，确认信息无误后，点击右下角的确认，完成规则引擎的配置。
+创建好的动作会显示在响应动作一栏里，确认信息无误后，点击下方的 “创建”，完成规则引擎的配置。
 
 ![添加动作](../_assets/deployments/rule_engine/add_kafka_action05.png)
 
@@ -120,7 +127,7 @@ WHERE
 
 >如果您是第一次使用 EMQ X Cloud 可以前往[部署连接指南](../deployments/connections.md)，查看 MQTT 客户端连接和测试指南 
 
-我们尝试向 home/sensor 主题发送下面的数据
+我们尝试向 greet/emqx 主题发送下面的数据
 
 ```json
 {

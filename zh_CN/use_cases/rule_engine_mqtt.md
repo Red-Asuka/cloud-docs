@@ -44,8 +44,10 @@ sudo docker run -it -p 1883:1883 adek06/mqtt:mosquitto
 
 我们的目标是：当有消息发送到 greet 主题时，就会触发引擎。这里需要对 SQL 进行一定的处理：
 
-* 仅针对 'greet/#'
-* 根据上面的原则，我们最后得到的 SQL 应该如下：
+* 仅针对 'greet/#' 主题
+* 只转发 msg 
+
+根据上面的原则，我们最后得到的 SQL 应该如下：
 
 ```sql
 SELECT
@@ -56,26 +58,32 @@ FROM
 
 
 #### 3. 创建资源和动作
-点击添加动作，在选择动作页，选择 桥接数据到 MQTT Broker，点击下一步，在配置动作页面，点击创建资源。
+点击添加动作，在选择动作页，选择 **桥接数据到 MQTT Broker**，点击 **新建**，在配置动作页面，点击创建资源。
 ![添加动作](../_assets/deployments/rule_engine/add_mqtt_action01.png)
 
 ![选择 桥接数据到 MQTT Broker](../_assets/deployments/rule_engine/add_mqtt_action02.png)
 
 
 
-在创建资源页面里，资源类型选择 MQTT Bridge，在 远程 broker 地址 里填写服务器的私有地址，将挂载点放在 emqx/ 上，然后点击测试。右上角会返回 “测试资源创建成功” 表示测试成功。
-
->注意：
->
->如果测试失败，请检查是否完成对等连接，详情请看 [VPC 对等连接](../deployments/vpc_peering.md)，并检查 URL 是否正确。
+在创建资源页面里，资源类型选择 MQTT Bridge，在 远程 broker 地址 里填写服务器的私有地址，将挂载点放在 emqx/ 上，然后点击测试。上方返回 “测试资源创建成功” 表示测试成功。
 
 ![填写 MQTT 配置](../_assets/deployments/rule_engine/add_mqtt_action03.png)
+
+> ⚠️注意：
+>
+> 如果测试失败，请检查是否完成对等连接，详情请看 [VPC 对等连接](../deployments/vpc_peering.md)，并检查 URL 是否正确。 
+>
+> 如果对等连接已经完成，请检查服务器的安全组是否打开对应的端口
+>
+> 如果使用的是免费试用部署，则 IP 填写的是公网 IP。如果测试失败，请检查服务器地址是否是公网 IP 以及服务器端口是否打开
+
+
 
 点击确定，返回到配置动作页面，默认选择的是刚才创建的资源，在消息内容模版里填写 "${msg} FROM EMQ X CLOUD"，点击确定。
 
 ![填写消息内容模版](../_assets/deployments/rule_engine/add_mqtt_action04.png)
 
-创建好的动作会显示在响应动作一栏里，确认信息无误后，点击右下角的确认，完成规则引擎的配置。
+创建好的动作会显示在响应动作一栏里，确认信息无误后，点击下方的 “创建”，完成规则引擎的配置。
 
 ![确认](../_assets/deployments/rule_engine/add_mqtt_action05.png)
 
