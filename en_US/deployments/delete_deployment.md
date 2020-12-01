@@ -10,4 +10,4 @@ Before deleting the deployment, you need to make sure the deployment running sta
 
 3. Click OK to complete the deployment deletion
 
-![delete_deployment](_assets/delete_deployment.png)
+![delete_deployment](./_assets/delete_deployment.png)

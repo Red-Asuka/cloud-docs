@@ -1,4 +1,4 @@
-![Webhook](_assets/web_hook.jpg)
+![Webhook](./_assets/web_hook.jpg)
 
 # Use EMQ X Cloud rule engine to connect to webhook
 
@@ -39,7 +39,7 @@ Go to [EMQ X Cloud Console](https://cloud.emqx.io/console/), and click to enter 
 
 On the deployment page, select the rule engine and click Create.
 
-![规则引擎页](_assets/view_rule_engine.png)
+![规则引擎页](./_assets/view_rule_engine.png)
 
 Our goal is to trigger the rule engine when a message "hello" is sent to the greet topic. Certain SQL processing is required here:
 
@@ -61,9 +61,9 @@ WHERE
 
 Click Add Action. On the Select Action page, select `Send Data to Web Service`, and click `New` Resource.
 
-![添加动作](_assets/add_webhook_action01.png)
+![添加动作](./_assets/add_webhook_action01.png)
 
-![选择发送到 Web 服务器](_assets/add_webhook_action02.png)
+![选择发送到 Web 服务器](./_assets/add_webhook_action02.png)
 
 
 
@@ -73,15 +73,15 @@ On the Create Resource page, select Webhook as the resource type, fill in the UR
 >
 >If the test fails, please check whether the [VPC peering connection](../../deployments/vpc_peering.md) is completed and whether the IP address is correct. 
 
-![创建资源](_assets/add_webhook_action04.png)
+![创建资源](./_assets/add_webhook_action04.png)
 
 Click OK to return to the configuration action page. The resource just created is selected by default. Fill in "hello emqx!" in the message content template, and click OK.
 
-![配置动作](_assets/add_webhook_action05.png)
+![配置动作](./_assets/add_webhook_action05.png)
 
 The created action will be displayed in the response action column. After confirming that the information is correct, click Create in the lower right corner to complete the configuration of the rule engine.
 
-![完成规则引擎配置](_assets/add_webhook_action06.png)
+![完成规则引擎配置](./_assets/add_webhook_action06.png)
 
 
 
@@ -91,4 +91,4 @@ The created action will be displayed in the response action column. After confir
 
 When we send "hello" to the greet topic, the rule created above will be triggered and we can see that the web server has received the message of "hello emqx!"
 
-![Web 服务器收到消息](_assets/add_webhook_action07.png)
+![Web 服务器收到消息](./_assets/add_webhook_action07.png)

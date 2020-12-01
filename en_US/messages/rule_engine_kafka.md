@@ -1,4 +1,4 @@
-![规则引擎](_assets/web_hook.jpg)
+![规则引擎](./_assets/web_hook.jpg)
 
 # Use EMQ X Cloud rule engine to connect to Kafka
 
@@ -59,7 +59,7 @@ Go to [EMQ X Cloud Console](https://cloud.emqx.io/console/), and click to enter 
 
 On the deployment page, select the rule engine and click Create.
 
-![规则引擎页](_assets/view_rule_engine.png)
+![规则引擎页](./_assets/view_rule_engine.png)
 
 Our goal is to trigger the engine when the topic of greet receives msg as hello. Certain SQL processing is required here:
 
@@ -98,13 +98,13 @@ Click Test to view the obtained data results. If the settings are correct, the t
 
 Click Add Action. On the Select Action page, select Bridge Data to Kafka, click Next, and on the Configure Action page, click Create Resource.
 
-![添加动作](_assets/add_webhook_action01.png)
+![添加动作](./_assets/add_webhook_action01.png)
 
-![添加动作](_assets/add_kafka_action02.png)
+![添加动作](./_assets/add_kafka_action02.png)
 
 On the Create Resource page, select Kafka as the resource type, and fill in the server's IP and corresponding port `<ip>:<port>` in the Kafka server box. Here, the port number we use is 9092. Click Test and  it indicates that the test is successful if "Resources Available" returns.
 
-![添加动作](_assets/add_kafka_action03.png)
+![添加动作](./_assets/add_kafka_action03.png)
 
 > note:
 >
@@ -112,11 +112,11 @@ On the Create Resource page, select Kafka as the resource type, and fill in the 
 
 Click OK to return to the configuration action page, fill in the testTopic topic just created in Kafka topic, fill in "hello from emqx cloud" in the message content template, select the default resource ID, and click OK.
 
-![添加动作](_assets/add_kafka_action04.png)
+![添加动作](./_assets/add_kafka_action04.png)
 
 The created action will be displayed in the response action column. After confirming that the information is correct, click Confirm in the lower right corner to complete the configuration of the rule engine.
 
-![添加动作](_assets/add_kafka_action05.png)
+![添加动作](./_assets/add_kafka_action05.png)
 
 ### 4. Test
 
@@ -131,7 +131,7 @@ We try to send the following data to the topic of greet/a
 ```
 On the rule engine page, click Monitor and you can see that the number of successes becomes 1.
 
-![转发成功](_assets/add_kafka_action06.png)
+![转发成功](./_assets/add_kafka_action06.png)
 In the Kafka instance, you can see the messages forwarded by EMQ X Cloud.
 
 ```sh
@@ -139,5 +139,5 @@ In the Kafka instance, you can see the messages forwarded by EMQ X Cloud.
 $ docker exec -it mykafka /bin/bas
 $ kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092  --topic testTopic --from-beginning
 ```
-![服务器收到消息](_assets/add_kafka_action07.png)
+![服务器收到消息](./_assets/add_kafka_action07.png)
 

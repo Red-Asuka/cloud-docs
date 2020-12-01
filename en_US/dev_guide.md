@@ -32,7 +32,7 @@ Unlike most other public IoT Hub cloud platforms, EMQ X Cloud provides MQTT 5.0 
 
 The platform uses REST API to add, delete, check, and modify authentication information, and applies platform-side operations on EMQ X Cloud.
 
-​            ![img](_assets/http_rest_api.png)            
+​            ![img](./_assets/http_rest_api.png)            
 
 
 
@@ -42,11 +42,11 @@ To obtain the online status of the device, EMQ X Cloud itself can query the onli
 
 - The platform obtains the list of online devices through the REST API and queries whether the device is online.
 
-​            ![img](_assets/http_rest_api.png)            
+​            ![img](./_assets/http_rest_api.png)            
 
 - The platform uses the rule engine to rewrite the status of the device in the private database or send it to a self-built service (Web service) when the device is online or offline.
 
-​            ![img](_assets/http_rest_api_rule_engine.png)            
+​            ![img](./_assets/http_rest_api_rule_engine.png)            
 
 ## Device offline alarm
 
@@ -60,7 +60,7 @@ The platform uses the rule engine to write the online and offline information in
 
 After receiving the device offline notification, the platform can perform offline alarm related services.
 
-​            ![img](_assets/http_rest_api_rule_engine.png)            
+​            ![img](./_assets/http_rest_api_rule_engine.png)            
 
 
 
@@ -70,7 +70,7 @@ It can set ACL permissions according to devices or topics to improve system secu
 
 The platform uses REST API to add, delete, check, and modify ACL permissions.
 
-​            ![img](_assets/http_rest_api.png)            
+​            ![img](./_assets/http_rest_api.png)            
 
 
 
@@ -78,7 +78,7 @@ The platform uses REST API to add, delete, check, and modify ACL permissions.
 
 For abnormal devices or devices that need to be forced offline, the platform can use REST API to kick online devices offline.
 
-​            ![img](_assets/http_rest_api.png)            
+​            ![img](./_assets/http_rest_api.png)            
 
 
 
@@ -86,7 +86,7 @@ For abnormal devices or devices that need to be forced offline, the platform can
 
 The platform subscribes or unsubscribes to topics for **online devices** through the REST API, without the device actively initiating subscriptions, or upgrading or burning device software data.
 
-​            ![img](_assets/http_rest_api.png)            
+​            ![img](./_assets/http_rest_api.png)            
 
 
 
@@ -94,7 +94,7 @@ The platform subscribes or unsubscribes to topics for **online devices** through
 
 The platform publishes messages to specified topics through REST API or MQTT access, and supports batch operations.
 
-​            ![img](_assets/http_rest_api_mqtt_client.png)            
+​            ![img](./_assets/http_rest_api_mqtt_client.png)            
 
 
 
@@ -104,7 +104,7 @@ Through the rule engine, device events (online and offline, subscription/unsubsc
 
 
 
-​            ![img](_assets/http_rest_api_rule_engine.png)            
+​            ![img](./_assets/http_rest_api_rule_engine.png)            
 
 
 
@@ -112,7 +112,7 @@ Through the rule engine, device events (online and offline, subscription/unsubsc
 
 It obtains relevant statistical information through the REST API, including the number of online devices, subscription topics, topics, messages sent and received, and statistical indicators such as the number of messages sent and received.
 
-​            ![img](_assets/http_rest_api.png)            
+​            ![img](./_assets/http_rest_api.png)            
 
 
 

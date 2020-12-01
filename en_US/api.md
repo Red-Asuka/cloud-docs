@@ -8,7 +8,7 @@ EMQ X Cloud API follows the REST architecture, and you can access the functions 
 
 You can get the API access address through the deployment details page.
 
-![api-access](_assets/api-access.png)
+![api-access](./_assets/api-access.png)
 
 If we want to get the information of all nodes, we can call it like this:
 
@@ -22,7 +22,7 @@ $ curl -i --basic -u j11c5ff1:qc47fd11fccf1644 -X GET "https://lacd0b7b.test-cn.
 
 HTTP API uses the method of [Basic authentication](https://en.wikipedia.org/wiki/Basic_access_authentication). The id and password must be filled in AppID and AppSecret respectively. You can modify and add AppID/AppSecret by creating an application access in the API access under the deployment details page.
 
-![api-app](_assets/api-app.png)
+![api-app](./_assets/api-app.png)
 
 
 

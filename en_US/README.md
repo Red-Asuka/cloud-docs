@@ -28,9 +28,9 @@ It supports massive devices to connect to the cloud, and provides stable and rel
 <!-- TODO: example 仓库 -->
 - Perfectly fit EMQ product ecology of [Edge Computing](https://www.emqx.io/products/kuiper), [Edge Industrial Internet of Things](https://www.emqx.io/products/neuron), Support dozens of industrial protocols to connect to the cloud
 
-{% hint style="info" %}
+::: tip
 For multi-protocol and private protocol support, please contact [Tickets](./contact.md) for activation.
-{% endhint %}
+:::
 
 
 
@@ -38,7 +38,7 @@ For multi-protocol and private protocol support, please contact [Tickets](./cont
 
 To ensure flexibility, EMQ X Cloud does not directly provide device management related functions, but opens up capabilities through REST API and rule engine. Users can choose the functions they need to integrate with their own device management system and IoT platform.
 
-![image (1)](_assets/http_rest_api.png)
+![image (1)](./_assets/http_rest_api.png)
 
 - **Device authentication information management: **The platform uses REST API to add, delete, check, and modify authentication information. 
 - **View online status of device:**
